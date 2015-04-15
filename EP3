@@ -1,4 +1,5 @@
-def infouser():
+import csv
+def infouser():##função para armazenar os dados do usuário
     f = open("usuario1.csv","r+")
     f.readline()
     dados=f.readline().strip().split(',')
@@ -10,26 +11,40 @@ def infouser():
     fator=dados[5]
 
     
-def infodieta():
+def infodieta():##função para armazenar os dados que o usuário comeu cada dia
     f = open("usuario1.csv","r+")
     f.readline()
     f.readline()
     f.readline()
-    leitura=f.readline().strip().split(',')
-    data=leitura[0]
-    rango=leitura[1]
-    quant=int(leitura[2])
+    
+    DIC1={'6/4/15':[] }
+    DIC2={'7/4/15':[] }
     
     
-    lista = []
-    k=1
+    k=0
     while k<7:
         read=f.readline().strip().split(',')
+        data=read[0]
+        rango=read[1]
+        quant=int(read[2])
+        
         if read[0]  == '6/4/15':
-            lista.append(read[1])
+            DIC1['6/4/15'].append(rango)
+            DIC1['6/4/15'].append(quant)
+        elif read[0] == '7/4/15':
+            DIC2['7/4/15'].append(rango)
+            DIC2['7/4/15'].append(quant)
         k+=1
         
-    print(lista)
+    print(DIC1)
+    print(DIC2)
+
+def cal():##função para calcular as calorias consumidas
+    with open("alimentos(1).csv","r") as calo:
+        ler=csv.reader(calo)
+        calo={row[0]:row[2] for row in ler }
+        print(calo)
     
     
-infodieta()
+    
+cal()
