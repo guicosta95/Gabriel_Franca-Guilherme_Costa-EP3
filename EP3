@@ -1,0 +1,35 @@
+def infouser():
+    f = open("usuario1.csv","r+")
+    f.readline()
+    dados=f.readline().strip().split(',')
+    nome= dados[0]
+    idade=int(dados[1])
+    peso= int(dados[2])
+    sexo= dados[3]
+    altura= float(dados[4])
+    fator=dados[5]
+
+    
+def infodieta():
+    f = open("usuario1.csv","r+")
+    f.readline()
+    f.readline()
+    f.readline()
+    leitura=f.readline().strip().split(',')
+    data=leitura[0]
+    rango=leitura[1]
+    quant=int(leitura[2])
+    
+    
+    lista = []
+    k=1
+    while k<7:
+        read=f.readline().strip().split(',')
+        if read[0]  == '6/4/15':
+            lista.append(read[1])
+        k+=1
+        
+    print(lista)
+    
+    
+infodieta()
