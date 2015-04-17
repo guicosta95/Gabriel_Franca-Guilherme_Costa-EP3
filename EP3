@@ -11,40 +11,153 @@ def infouser():##função para armazenar os dados do usuário
     fator=dados[5]
 
     
-def infodieta():##função para armazenar os dados que o usuário comeu cada dia
+
+def dia():##função para abrir o arquivo do usuario e dos alimentos e relacionar o que cada um comeu no dia
+    global f
     f = open("usuario1.csv","r+")
     f.readline()
+    f.readline()#pula as linhas
     f.readline()
-    f.readline()
+    p=0
     
-    DIC1={'6/4/15':[] }
-    DIC2={'7/4/15':[] }
-    
-    
-    k=0
-    while k<7:
-        read=f.readline().strip().split(',')
-        data=read[0]
-        rango=read[1]
-        quant=int(read[2])
         
-        if read[0]  == '6/4/15':
-            DIC1['6/4/15'].append(rango)
-            DIC1['6/4/15'].append(quant)
+    global DIC1
+    DIC1={'6/4/15':[] }##cria um dicionario para cada dia do usuario
+    global DIC2
+    DIC2={'7/4/15':[] }
+    global DIC3
+    DIC3={'8/4/15':[] }
+    global DIC4
+    DIC4={'9/4/15':[] }    
+    global DIC5
+    DIC5={'10/4/15':[] }
+    global DIC6
+    DIC6={'11/4/15':[] }
+    global DIC7
+    DIC7={'12/4/15':[] }
+    
+    global listadia
+    listadia=[DIC1,DIC2,DIC3,DIC4,DIC5,DIC6,DIC7]##essa lista vai servir pra gente calcular depois todos os dias o que ele comeu
+    while p<7:##------- precisa mudar, só colocamos 7 porque sabemos que ele comeu 7 coisas totos os dias
+        global read
+        read=f.readline().strip().split(',')##lê o arquivo do usuario e separa as info
+        global data
+        data=read[0]
+        global rango
+        rango=read[1]
+        global quant
+        quant=int(read[2])
+        if read[0]  == '6/4/15':## se a data for essa no arquivo do usuario
+            DIC1['6/4/15'].append(rango)#adciona a comida para o dicionario desta data
+            DIC1['6/4/15'].append(quant)#adciona o quanto ele comeu para o dicionario desta data
         elif read[0] == '7/4/15':
             DIC2['7/4/15'].append(rango)
             DIC2['7/4/15'].append(quant)
-        k+=1
+        elif read[0]  == '8/4/15':
+            DIC3['8/4/15'].append(rango)
+            DIC3['8/4/15'].append(quant)
+        elif read[0]  == '9/4/15':
+            DIC4['9/4/15'].append(rango)
+            DIC4['9/4/15'].append(quant)
+        elif read[0]  == '10/4/15':
+            DIC5['10/4/15'].append(rango)
+            DIC5['10/4/15'].append(quant)
+        elif read[0]  == '11/4/15':
+            DIC6['11/4/15'].append(rango)
+            DIC6['11/4/15'].append(quant)
+        elif read[0]  == '12/4/15':
+            DIC7['12/4/15'].append(rango)
+            DIC7['12/4/15'].append(quant)
         
-    print(DIC1)
-    print(DIC2)
-
-def cal():##função para calcular as calorias consumidas
-    with open("alimentos(1).csv","r") as calo:
+        
+        
+        p+=1
+   
+       
+def caloria():#função para determinar as calorias comidas naquele dia
+    with open("alimentos(1).csv","r") as calo:##abre o arquivo dos alimentos
         ler=csv.reader(calo)
-        calo={row[0]:row[2] for row in ler }
-        print(calo)
+        calo={row[0]:row[2] for row in ler }#lê as calorias para cada alimento e coloca elas em um dicionario
     
+    dia()
+    comida=0##isso vai acessar a comida que o usuario comeu
+    quantidade=1##isso vai acessar a quantidade que o usuario comeu do alimento
+    count=0##contador do while
+    totalcal=0## este é o total de calorias consumidas
     
+          
+   
     
-cal()
+    while count<4:## precisamo ve essa porra tbm, precisamo ver quantas coisas ele ranga num dia 
+        
+        rangocal=(DIC1['6/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))##faz a conta pra ver quantas calorias ele ranga por alimento
+        totalcal+=rangocal##calcula o total de calorias
+        count+=1
+        comida+=2#vai pulando os indices para ir pegando as comidas
+        quantidade+=2#vai pulando os indices para ir pegando as quantidades
+    
+    print("você consumiu:",totalcal,"calorias hoje")
+    
+
+    
+def prota():
+    y=0## valor que a gente tem q usar pra ele percorrer os dias
+    with open("alimentos(1).csv","r") as prota:##abre o arquivo dos alimentos
+        ler=csv.reader(prota)
+        prota={row[0]:row[3] for row in ler }#lê as prota para cada alimento e coloca elas em um dicionario
+    dia()
+    comida=0##isso vai acessar a comida que o usuario comeu
+    quantidade=1##isso vai acessar a quantidade que o usuario comeu do alimento
+    count=0##contador do while
+    totalprota=0## este é o total de proteinas consumidas
+    
+    while count<4:## precisamo ve essa porra tbm, precisamo ver quantas coisas ele ranga num dia 
+        
+        rangoprota=(listadia[y][quantidade]/100)*((float(prota[DIC1['6/4/15'][comida]])))##faz a conta pra ver quantas proteinas ele ranga por alimento
+        totalprota+=rangoprota##calcula o total de prota
+        count+=1
+        comida+=2#vai pulando os indices para ir pegando as comidas
+        quantidade+=2#vai pulando os indices para ir pegando as quantidades
+    
+    print("você consumiu:",totalprota,"gramas de proteínas hoje")    
+
+def carbs():
+    with open("alimentos(1).csv","r") as carbo:##abre o arquivo dos alimentos
+        ler=csv.reader(carbo)
+        carbo={row[0]:row[4] for row in ler }#lê os carbo para cada alimento e coloca elas em um dicionario
+    dia()
+    comida=0##isso vai acessar a comida que o usuario comeu
+    quantidade=1##isso vai acessar a quantidade que o usuario comeu do alimento
+    count=0##contador do while
+    totalcarbo=0## este é o total de proteinas consumidas
+    
+    while count<4:## precisamo ve essa porra tbm, precisamo ver quantas coisas ele ranga num dia 
+        
+        rangocarbo=(DIC1['6/4/15'][quantidade]/100)*((float(carbo[DIC1['6/4/15'][comida]])))##faz a conta pra ver quantas g de carbohidrato ele ranga por alimento
+        totalcarbo+=rangocarbo##calcula o total de carbo
+        count+=1
+        comida+=2#vai pulando os indices para ir pegando as comidas
+        quantidade+=2#vai pulando os indices para ir pegando as quantidades
+    
+    print("você consumiu:",totalcarbo,"gramas de carbohídratos hoje")  
+
+def banha():
+     with open("alimentos(1).csv","r") as gord:##abre o arquivo dos alimentos
+        ler=csv.reader(gord)
+        gord={row[0]:row[5] for row in ler }#lê os carbo para cada alimento e coloca elas em um dicionario
+     dia()
+     comida=0##isso vai acessar a comida que o usuario comeu
+     quantidade=1##isso vai acessar a quantidade que o usuario comeu do alimento
+     count=0##contador do while
+     totalgord=0## este é o total de proteinas consumidas
+    
+     while count<4:## precisamo ve essa porra tbm, precisamo ver quantas coisas ele ranga num dia 
+        
+         rangogord=(DIC1['6/4/15'][quantidade]/100)*((float(gord[DIC1['6/4/15'][comida]])))##faz a conta pra ver quantas g de carbohidrato ele ranga por alimento
+         totalgord+=rangogord##calcula o total de gordura
+         count+=1
+         comida+=2#vai pulando os indices para ir pegando as comidas
+         quantidade+=2#vai pulando os indices para ir pegando as quantidades
+    
+     print("você consumiu:",totalgord,"gramas de gordura hoje, seu gordo")  
+    
