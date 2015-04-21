@@ -18,6 +18,11 @@ def dia():##função para abrir o arquivo do usuario e dos alimentos e relaciona
     f.readline()
     f.readline()#pula as linhas
     f.readline()
+    d=open("usuario1.csv","r+")
+    d.readline()
+    d.readline()
+    d.readline()
+    sk=d.readlines()
     p=0
     
         
@@ -38,8 +43,7 @@ def dia():##função para abrir o arquivo do usuario e dos alimentos e relaciona
     
     global listadia
     listadia=[DIC1,DIC2,DIC3,DIC4,DIC5,DIC6,DIC7]##essa lista vai servir pra gente calcular depois todos os dias o que ele comeu
-    while p<7:##------- precisa mudar, só colocamos 7 porque sabemos que ele comeu 7 coisas totos os dias
-        global read
+    while len(sk)>p:##------- precisa mudar, só colocamos 7 porque sabemos que ele comeu 7 coisas totos os dias
         read=f.readline().strip().split(',')##lê o arquivo do usuario e separa as info
         global data
         data=read[0]
@@ -68,10 +72,11 @@ def dia():##função para abrir o arquivo do usuario e dos alimentos e relaciona
         elif read[0]  == '12/4/15':
             DIC7['12/4/15'].append(rango)
             DIC7['12/4/15'].append(quant)
-        
-        
-        
         p+=1
+        
+       
+   
+    print(listadia[0])
    
        
 def caloria():#função para determinar as calorias comidas naquele dia
@@ -101,7 +106,7 @@ def caloria():#função para determinar as calorias comidas naquele dia
 
     
 def prota():
-    y=0## valor que a gente tem q usar pra ele percorrer os dias
+    y=0## valor que a gente tem q usar pra ele percorrer os dias ainda nao apliquei isso no codigo
     with open("alimentos(1).csv","r") as prota:##abre o arquivo dos alimentos
         ler=csv.reader(prota)
         prota={row[0]:row[3] for row in ler }#lê as prota para cada alimento e coloca elas em um dicionario
@@ -113,7 +118,7 @@ def prota():
     
     while count<4:## precisamo ve essa porra tbm, precisamo ver quantas coisas ele ranga num dia 
         
-        rangoprota=(listadia[y][quantidade]/100)*((float(prota[DIC1['6/4/15'][comida]])))##faz a conta pra ver quantas proteinas ele ranga por alimento
+        rangoprota=(DIC1['6/4/15'][quantidade]/100)*((float(prota[DIC1['6/4/15'][comida]])))##faz a conta pra ver quantas proteinas ele ranga por alimento
         totalprota+=rangoprota##calcula o total de prota
         count+=1
         comida+=2#vai pulando os indices para ir pegando as comidas
@@ -161,3 +166,12 @@ def banha():
     
      print("você consumiu:",totalgord,"gramas de gordura hoje, seu gordo")  
     
+def funça():
+    f = open("usuario1.csv","r+")
+    
+    f.readline()
+    f.readline()#pula as linhas
+    f.readline()
+    sk=d.readlines()
+    print(len(sk))
+prota()
