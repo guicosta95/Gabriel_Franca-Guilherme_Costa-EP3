@@ -43,7 +43,7 @@ def dia():##função para abrir o arquivo do usuario e dos alimentos e relaciona
     
     global listadia
     listadia=[DIC1,DIC2,DIC3,DIC4,DIC5,DIC6,DIC7]##essa lista vai servir pra gente calcular depois todos os dias o que ele comeu
-    while len(sk)>p:##------- precisa mudar, só colocamos 7 porque sabemos que ele comeu 7 coisas totos os dias
+    while len(sk)>p:
         read=f.readline().strip().split(',')##lê o arquivo do usuario e separa as info
         global data
         data=read[0]
@@ -96,6 +96,14 @@ def caloria():#função para determinar as calorias comidas naquele dia
     while count<4:## precisamo ve essa porra tbm, precisamo ver quantas coisas ele ranga num dia 
         
         rangocal=(DIC1['6/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))##faz a conta pra ver quantas calorias ele ranga por alimento
+        rangocal=(DIC1['7/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))
+        rangocal=(DIC1['8/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))
+        rangocal=(DIC1['9/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))
+        rangocal=(DIC1['10/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))
+        rangocal=(DIC1['11/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))
+        rangocal=(DIC1['12/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))
+        
+        
         totalcal+=rangocal##calcula o total de calorias
         count+=1
         comida+=2#vai pulando os indices para ir pegando as comidas
