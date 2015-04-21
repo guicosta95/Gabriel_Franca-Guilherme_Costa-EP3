@@ -96,14 +96,7 @@ def caloria():#função para determinar as calorias comidas naquele dia
     while count<4:## precisamo ve essa porra tbm, precisamo ver quantas coisas ele ranga num dia 
         
         rangocal=(DIC1['6/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))##faz a conta pra ver quantas calorias ele ranga por alimento
-        rangocal=(DIC1['7/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))
-        rangocal=(DIC1['8/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))
-        rangocal=(DIC1['9/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))
-        rangocal=(DIC1['10/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))
-        rangocal=(DIC1['11/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))
-        rangocal=(DIC1['12/4/15'][quantidade]/100)*((float(calo[DIC1['6/4/15'][comida]])))
-        
-        
+    
         totalcal+=rangocal##calcula o total de calorias
         count+=1
         comida+=2#vai pulando os indices para ir pegando as comidas
