@@ -1,0 +1,29 @@
+"""       
+def caloria():#função para determinar as calorias comidas naquele dia
+    with open("alimentos(1).csv","r") as calo:##abre o arquivo dos alimentos
+        ler=csv.reader(calo)
+        calo={row[0]:row[2] for row in ler }#lê as calorias para cada alimento e coloca elas em um dicionario
+    
+    dia()
+    comida=0##isso vai acessar a comida que o usuario comeu
+    quantidade=1##isso vai acessar a quantidade que o usuario comeu do alimento
+    count=0##contador do while
+    totalcal=0## este é o total de calorias consumidas
+    i=0 #para acessar o dia que queremos apartir da listadia
+          
+"""
+##minha ideia é usar um contador(i), que percorre a lista de dicionarios com as informaçoes
+##do que o usuario comeu e em q quant (listadia) e assim ir calculando as calorias
+
+"""
+    
+    while count<len(listadia[i]):## precisamo ve essa porra tbm, precisamo ver quantas coisas ele ranga num dia 
+        
+        rangocal=(listadia[i][quantidade]/100)*((float(calo[listadia[i][comida]])))##faz a conta pra ver quantas calorias ele ranga por alimento
+        totalcal+=rangocal##calcula o total de calorias
+        count+=1
+        comida+=2#vai pulando os indices para ir pegando as comidas
+        quantidade+=2#vai pulando os indices para ir pegando as quantidades
+        i+=1
+    print("você consumiu:",totalcal,"calorias %f"%i)
+"""   
