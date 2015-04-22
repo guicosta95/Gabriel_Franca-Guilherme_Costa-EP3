@@ -1,0 +1,15 @@
+def graficos():
+    necessidade()
+    caloria()    
+    def grafico1():
+        necessidade()
+        caloria()
+        plt.plot([1,2,3,4,5,6,7],[3462,3462,3462,3462,3462,3462,3462])
+        plt.plot(day,totalcal), '0'
+        plt.axis([1,7,0,4000])    
+        plt.show()
+    
+    grafico1()
+    
+
+graficos()
