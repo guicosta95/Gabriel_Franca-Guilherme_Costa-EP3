@@ -1,0 +1,86 @@
+def graficos():
+    necessidade()
+    caloria()    
+    def grafico1():
+        necessidade()
+        caloria()
+        listaf=[]
+        listatotal=[]
+        b=0
+        while a>=b:
+            listaf.append(int(b))
+            listatotal.append(total)
+            b+=1
+            print(listaf)
+        plt.plot([dias],[totaltotal], 'bs')
+        
+        plt.plot(listaf,listatotal,'r--')
+        plt.axis([0,8,2000,4000])    
+        plt.show()
+        plt.xlabel('Dias')
+        plt.ylabel('Calorias por dia')
+        plt.title('Calorias necessarias e Calorias consumidas')
+    grafico1()
+    def grafico2prota():
+        prota()
+        listaf=[]
+        listatotal=[]
+        b=0
+        while a>=b:
+            listaf.append(int(b))
+            listatotal.append(total)
+            b+=1
+            print(listaf)       
+       ##prota   =    plota as quantidades em gramas de proteina consumidas no dia 
+       plt.plot([dias],[totaltotalp],'bs')
+      
+       
+       plt.axis([0,8,500])
+       plt.xlabel('Dias')
+       plt.ylabel('Quantidade(g) por dia')
+       plt.title('Quantidade de proteinas consumidas')
+       plt.show
+    graficoprota()
+      
+    def grafico2carbs():
+            carbs()
+            listaf=[]
+            listatotal=[]
+            b=0
+            while a>=b:
+                listaf.append(int(b))
+                listatotal.append(total)
+                b+=1
+                print(listaf)       
+           ##carbs   =    plota as quantidades em gramas de carboidratos consumidas no dia
+           plt.plot([dias],[totaltotalc],'g^')
+    
+    
+           plt.axis([0,8,0,500])
+           plt.xlabel('Dias')
+           plt.ylabel('Quantidade(g) por dia')
+           plt.title('Quantidade de carboidratos consumidas')
+           plt.show
+    graficocarbas()     
+
+    def grafico2banha():
+            banha()
+            listaf=[]
+            listatotal=[]
+            b=0
+            while a>=b:
+                listaf.append(int(b))
+                listatotal.append(total)
+                b+=1
+                print(listaf)       
+           ##gordura=     plota as quantidades em gramas de gordura consumidas no dia
+           plt.plot([dias],[totaltotalg]'o')
+                
+           plt.axis([0,8,0,500])
+           plt.xlabel('Dias')
+           plt.ylabel('Quantidade(g) por dia')
+           plt.title('Quantidade de gordura consumida')
+           plt.show
+    grafico2banha()
+
+graficos()
