@@ -19,8 +19,9 @@ def infouser():##função para armazenar os dados do usuário
     
 def necessidade():##funçao para determinar a quantidade necessaria de calorias do usuario
     infouser()
-    total = 0
     global total
+    total = 0
+    
     
     if sexo == "M":   
         TMB = 88.36+(13.4*peso)+(4.8*altura)-(5.7*idade)
@@ -119,7 +120,9 @@ def caloria():#função para determinar as calorias comidas naquele dia
     totaltotal=[]
     global dias
     dias=[]
-    while day<7:
+    global a
+    a=(len(DIC1.keys()))
+    while day<a:
         while linha[contdia] in listadia:
                 contdia+=1
         contarango=linha.count(linha[contdia])
@@ -161,7 +164,7 @@ def prota():
     day=0
     listadia=[]
     
-    while day<7:
+    while day<a:
         while linha[contdia] in listadia:
                 contdia+=1
         contarango=linha.count(linha[contdia])
@@ -199,7 +202,7 @@ def carbs():
     contdia=3
     day=0
     listadia=[]
-    while day<7:
+    while day<a:
         while linha[contdia] in listadia:
                 contdia+=1
         contarango=linha.count(linha[contdia])
@@ -236,7 +239,7 @@ def banha():
      contdia=3
      day=0
      listadia=[]
-     while day<7:
+     while day<a:
         while linha[contdia] in listadia:
                 contdia+=1
         contarango=linha.count(linha[contdia])
@@ -264,9 +267,17 @@ def graficos():
     def grafico1():
         necessidade()
         caloria()
-        
+        listaf=[]
+        listatotal=[]
+        b=0
+        while a>=b:
+            listaf.append(int(b))
+            listatotal.append(total)
+            b+=1
+            print(listaf)
         plt.plot([dias],[totaltotal], 'bs')
-        plt.plot([0,1,2,3,4,5,6,7,8],[total,total,total,total,total,total,total,total,total],'r--')
+        
+        plt.plot(listaf,listatotal,'r--')
         plt.axis([0,8,2000,4000])    
         plt.show()
         plt.xlabel('Dias')
@@ -274,5 +285,4 @@ def graficos():
         plt.title('Calorias necessarias e Calorias consumidas durante a semana')
     grafico1()
     
-
 graficos()
