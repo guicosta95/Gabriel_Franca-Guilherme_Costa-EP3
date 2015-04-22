@@ -1,4 +1,5 @@
 import csv
+import matplotlib.pyplot as plt
 def infouser():##função para armazenar os dados do usuário
     f = open("usuario1.csv","r+")
     f.readline()
@@ -19,6 +20,7 @@ def infouser():##função para armazenar os dados do usuário
 def necessidade():##funçao para determinar a quantidade necessaria de calorias do usuario
     infouser()
     total = 0
+    global total
     
     if sexo == "M":   
         TMB = 88.36+(13.4*peso)+(4.8*altura)-(5.7*idade)
@@ -50,8 +52,7 @@ def necessidade():##funçao para determinar a quantidade necessaria de calorias 
         print("Digite corretamente.Digite M para masculino e F para feminino!")
            
     return print(("Voce precisa comer %i calorias por dia"%total))    
-
-necessidade()   
+  
 
 def dia():##função para abrir o arquivo do usuario e dos alimentos e relacionar o que cada um comeu no dia
     global f
@@ -65,11 +66,22 @@ def dia():##função para abrir o arquivo do usuario e dos alimentos e relaciona
     d.readline()
     sk=d.readlines()
     p=0
+    w=0
     
         
     global DIC1
-    DIC1={'6/4/15':[],'7/4/15': [],'8/4/15':[],'9/4/15':[],'10/4/15':[],'11/4/15':[],'12/4/15':[] }##cria um dicionario para cada dia do usuario
+    DIC1={}##cria um dicionario para cada dia do usuario
     while len(sk)>p:
+        with open("usuario1.csv","r") as r:
+            ler3=csv.reader(r)
+            r=[i[0] for i in ler3]
+            r.remove(r[2])
+            r.remove(r[1])
+            r.remove(r[0])
+            while w<len(sk):
+                DIC1[r[w]]=[]
+                w+=1
+               
         read=f.readline().strip().split(',')##lê o arquivo do usuario e separa as info
         global data
         data=read[0]
@@ -77,29 +89,11 @@ def dia():##função para abrir o arquivo do usuario e dos alimentos e relaciona
         rango=read[1]
         global quant
         quant=int(read[2])
-        if read[0]  == '6/4/15':## se a data for essa no arquivo do usuario
-            DIC1['6/4/15'].append(rango)#adciona a comida para o dicionario desta data
-            DIC1['6/4/15'].append(quant)#adciona o quanto ele comeu para o dicionario desta data
-        elif read[0] == '7/4/15':
-            DIC1['7/4/15'].append(rango)
-            DIC1['7/4/15'].append(quant)
-        elif read[0]  == '8/4/15':
-            DIC1['8/4/15'].append(rango)
-            DIC1['8/4/15'].append(quant)
-        elif read[0]  == '9/4/15':
-            DIC1['9/4/15'].append(rango)
-            DIC1['9/4/15'].append(quant)
-        elif read[0]  == '10/4/15':
-            DIC1['10/4/15'].append(rango)
-            DIC1['10/4/15'].append(quant)
-        elif read[0]  == '11/4/15':
-            DIC1['11/4/15'].append(rango)
-            DIC1['11/4/15'].append(quant)
-        elif read[0]  == '12/4/15':
-            DIC1['12/4/15'].append(rango)
-            DIC1['12/4/15'].append(quant)
+        DIC1[read[0]].append(rango)#adciona a comida para o dicionario desta data
+        DIC1[read[0]].append(quant)#adciona o quanto ele comeu para o dicionario desta data
+        
         p+=1
-    print(DIC1['12/4/15'])
+    print(DIC1)
        
 
    
@@ -115,11 +109,16 @@ def caloria():#função para determinar as calorias comidas naquele dia
     comida=0##isso vai acessar a comida que o usuario comeu
     quantidade=1##isso vai acessar a quantidade que o usuario comeu do alimento
     count=0##contador do while
+    global totalcal
     totalcal=0## este é o total de calorias consumidas
     contdia=3
+    global day
     day=0
     listadia=[]
-          
+    global totaltotal
+    totaltotal=[]
+    global dias
+    dias=[]
     while day<7:
         while linha[contdia] in listadia:
                 contdia+=1
@@ -133,13 +132,16 @@ def caloria():#função para determinar as calorias comidas naquele dia
         listadia.append(linha[contdia])    
         contdia+=1
         day+=1
-        print("você consumiu:",totalcal,"calorias no dia",day)
+        totaltotal.append(totalcal)
+        dias.append(day)
+        print("você consumiu:",totalcal,"calorias no dia",day)        
         totalcal=0
         rangocal=0
         comida=0
         quantidade=1
         count=0
-       
+        
+    
         
 
     
@@ -187,7 +189,8 @@ def carbs():
         carbo={row[0]:row[4] for row in ler }#lê os carbo para cada alimento e coloca elas em um dicionario
     with open("usuario1.csv","r") as linha:
         ler2=csv.reader(linha)
-        linha=[row[0] for row in ler2] 
+        linha=[row[0] for row in ler2]
+        
     dia()
     comida=0##isso vai acessar a comida que o usuario comeu
     quantidade=1##isso vai acessar a quantidade que o usuario comeu do alimento
@@ -253,3 +256,23 @@ def banha():
         comida=0
         quantidade=1
         count=0
+
+
+def graficos():
+    necessidade()
+    caloria()    
+    def grafico1():
+        necessidade()
+        caloria()
+        
+        plt.plot([dias],[totaltotal], 'bs')
+        plt.plot([0,1,2,3,4,5,6,7,8],[total,total,total,total,total,total,total,total,total],'r--')
+        plt.axis([0,8,2000,4000])    
+        plt.show()
+        plt.xlabel('Dias')
+        plt.ylabel('Calorias por dia')
+        plt.title('Calorias necessarias e Calorias consumidas durante a semana')
+    grafico1()
+    
+
+graficos()
