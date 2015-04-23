@@ -167,7 +167,7 @@ def prota():
     totaltotalp=[]
     global dias
     dias=[]
-    
+    a=(len(DIC1.keys()))
     while day<a:
         while linha[contdia] in listadia:
                 contdia+=1
@@ -212,7 +212,7 @@ def carbs():
     totaltotalc=[]
     global dias
     dias=[]
-    
+    a=(len(DIC1.keys()))
     while day<a:
         while linha[contdia] in listadia:
                 contdia+=1
@@ -256,7 +256,7 @@ def banha():
      totaltotalg=[]
      global dias
      dias=[]
-     
+     a=(len(DIC1.keys()))
      while day<a:
         while linha[contdia] in listadia:
                 contdia+=1
@@ -281,58 +281,104 @@ def banha():
         count=0
 
 
-def graficos():
+
+def grafico1():##primeira tentativa de grafico
     necessidade()
-    caloria()    
-    def grafico1():
-        necessidade()
-        caloria()
-        listaf=[]
-        listatotal=[]
-        b=0
-        while a>=b:
-            listaf.append(int(b))
-            listatotal.append(total)
-            b+=1
-            print(listaf)
-        plt.plot([dias],[totaltotal], 'bs')
+    caloria()
+    listaf=[]
+    listatotal=[]
+    b=0
+    while a>=b:
+        listaf.append(int(b))
+        listatotal.append(total)
+        b+=1
+        print(listatotal)
+    plt.plot([dias],[totaltotal], 'bs')
+    
+    plt.plot(listaf,listatotal,'r--')
+    plt.axis([0,8,2000,4000])    
+    plt.xlabel('Dias')
+    plt.ylabel('Calorias por dia')
+    plt.title('Calorias necessarias e Calorias consumidas')
+    plt.show()
+   
+def grafico2prota():##primeira tentativa de grafico
+    prota()
         
-        plt.plot(listaf,listatotal,'r--')
-        plt.axis([0,8,2000,4000])    
-        plt.show()
-        plt.xlabel('Dias')
-        plt.ylabel('Calorias por dia')
-        plt.title('Calorias necessarias e Calorias consumidas')
-    grafico1()
-    
-    def grafico2():
-        prota()
-        carbs()
-        banha()
-        listaf=[]
-        listatotal=[]
-        b=0
-        while a>=b:
-            listaf.append(int(b))
-            listatotal.append(total)
-            b+=1
-            print(listaf)       
        ##prota   =    plota as quantidades em gramas de proteina consumidas no dia 
-       plt.plot([dias],[totaltotalp],'bs')
-       ##carbs   =    plota as quantidades em gramas de carboidratos consumidas no dia
-       plt.plot([dias],[totaltotalc],'g^')
-       ##gordura=     plota as quantidades em gramas de gordura consumidas no dia
-       plt.plot([dias],[totaltotalg]'o')
+    plt.plot([dias],[totaltotalp],'o')
+      
        
-#legenda:
-#proteinas=quadrado
-#carboidratos=triangulos
-#gordura=bolinha       
-       plt.axis([0,8,0,200])
-       plt.xlabel('Dias')
-       plt.ylabel('Quantidade(g) por dia')
-       plt.title('Quantidade de proteinas,carboidratos e gordura')
-       plt.show
-      grafico2()
+    plt.axis([0,8,0,500])
+    plt.xlabel('Dias')
+    plt.ylabel('Quantidade(g) por dia')
+    plt.title('Quantidade de proteinas consumidas')
+    plt.show()
     
-graficos()
+      
+def grafico2carbs():##primeira tentativa de grafico
+    carbs()
+        
+           ##carbs   =    plota as quantidades em gramas de carboidratos consumidas no dia
+    plt.plot([dias],[totaltotalc],'g^')
+    
+    
+    plt.axis([0,8,0,500])
+    plt.xlabel('Dias')
+    plt.ylabel('Quantidade(g) por dia')
+    plt.title('Quantidade de carboidratos consumidas')
+    plt.show()
+      
+
+def grafico2banha():##primeira tentativa de grafico
+    banha()
+    
+        
+           ##gordura=     plota as quantidades em gramas de gordura consumidas no dia
+    plt.plot([dias],[totaltotalg],'o')
+                
+    plt.axis([0,8,0,500])
+    plt.xlabel('Dias')
+    plt.ylabel('Quantidade(g) por dia')
+    plt.title('Quantidade de gordura consumida')
+    plt.show()
+
+
+def GCAL(A,B,C,D):##segunda tentativa de grafico
+    caloria()
+    plt.plot(A,B)
+    plt.plot(A,D)
+    plt.axis(0,C,0,2000)
+    plt.ylabel("Calorias")
+    plt.xlabel("Dias")
+    plt.title("Calorias Consumidas")
+    plt.show()
+    
+def GPRO(A,B,C):##segunda tentativa de grafico
+    plt.plot(A,B)
+    plt.axis(0,C,0,2000)
+    plt.ylabel("Proteinas")
+    plt.xlabel("Dias")
+    plt.title("Proteinas Consumidas")
+    plt.show()
+
+def GRACARB(A,B,C):##segunda tentativa de grafico
+    plt.plot(A,B)
+    plt.axis(0,C,0,2000)
+    plt.ylabel("Carboidratos")
+    plt.xlabel("Dias")
+    plt.title("Carboidratos Consumidas")
+    plt.show()
+
+def GFAT(A,B,C):##segunda tentativa de grafico
+    plt.plot(A,B)
+    plt.axis(0,C,0,2000)
+    plt.ylabel("Gordura")
+    plt.xlabel("Dias")
+    plt.title("Gordura Consumidas")
+    plt.show()
+
+GCAL(dias,totaltotal,dias,total,dias)
+GPRO(dias,totaltotalp,dias)
+GCARB(dias,totaltotalc,dias)
+GFAT(dias,totaltotalg,dias)    
